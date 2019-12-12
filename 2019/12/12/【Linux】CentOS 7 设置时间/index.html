@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>【Linux】CentOS 7 设置时间 - H_VK</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="H_VK,"> 
+    <meta name="description" content="1.设置系统时间为中国时区并启用 NTP 同步1234567891011yum install -y ntp //安装ntp服务systemctl enable ntpd //开机启动服务syste,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="H_VK" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">H_VK</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://hvkcoder.me"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">【Linux】CentOS 7 设置时间</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">【Linux】CentOS 7 设置时间</h1>
+        <div class="stuff">
+            <span>十二月 12, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="1-设置系统时间为中国时区并启用-NTP-同步"><a href="#1-设置系统时间为中国时区并启用-NTP-同步" class="headerlink" title="1.设置系统时间为中国时区并启用 NTP 同步"></a>1.设置系统时间为中国时区并启用 NTP 同步</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ntp //安装ntp服务</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> ntpd //开机启动服务</span><br><span class="line"></span><br><span class="line">systemctl start ntpd //启动服务</span><br><span class="line"></span><br><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai //更改时区</span><br><span class="line"></span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp yes //启用ntp同步</span><br><span class="line"></span><br><span class="line">ntpq -p //同步时间</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-timedatectl-命令"><a href="#2-timedatectl-命令" class="headerlink" title="2.timedatectl 命令"></a>2.timedatectl 命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 读取时间</span></span><br><span class="line">timedatectl  //等同于 timedatectl status</span><br><span class="line"></span><br><span class="line"><span class="comment">## 列出所有时区</span></span><br><span class="line">timedatectl list-timezones</span><br><span class="line"></span><br><span class="line"><span class="comment">## 设置时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="comment">## 设置是否与NTP服务器同步</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp yes  //yes或者no</span><br><span class="line"></span><br><span class="line"><span class="comment">## 将硬件时钟调整为与本地时钟一致</span></span><br><span class="line">hwclock --systohc --localtime 或 timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line"></span><br><span class="line"><span class="comment">## 将硬件时间设置成 UTC</span></span><br><span class="line">hwclock --systohc --utc 或 timedatectl <span class="built_in">set</span>-local-rtc 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-时钟概念"><a href="#3-时钟概念" class="headerlink" title="3.时钟概念"></a>3.时钟概念</h2><p>在 CentOS 6 版本，时间设置有 date、hwclock 命令，从 CentOS 7 开始，使用了一个新的命令 timedatectl。</p>
+<ul>
+<li>UTC</li>
+</ul>
+<p>&ensp;&ensp; 整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时(UTC, Universal Time Coordinated)。</p>
+<ul>
+<li>GMT</li>
+</ul>
+<p>&ensp;&ensp; 格林威治标准时间 (Greenwich Mean Time)指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。(UTC 与 GMT 时间基本相同，本文中不做区分)</p>
+<ul>
+<li>CST</li>
+</ul>
+<p>&ensp;&ensp; 中国标准时间 (China Standard Time)【GMT + 8 = UTC + 8 = CST】</p>
+<ul>
+<li>DST</li>
+</ul>
+<p>&ensp;&ensp; 夏令时(Daylight Saving Time) 指在夏天太阳升起的比较早时，将时钟拨快一小时，以提早日光的使用。（中国不使用）</p>
+<p>硬件时钟：</p>
+<p>&ensp;&ensp;RTC(Real-Time Clock)或 CMOS 时钟，一般在主板上靠电池供电，服务器断电后也会继续运行。仅保存日期时间数值，无法保存时区和夏令时设置。</p>
+<p>系统时钟：</p>
+<p>&ensp;&ensp;一般在服务器启动时复制 RTC 时间，之后独立运行，保存了时间、时区和夏令时设置。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
