@@ -1,0 +1,179 @@
+@import url('https://fonts.loli.net/css?family=Pacifico');
+@import url('https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css');
+@import url('https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css');
+
+*:focus,
+*:hover,
+*:visited,
+*:invalid {
+  outline: none;
+}
+html,
+body {
+  font-family: 'Pacifico', Helvetica, Arial, sans-serif;
+  position: relative;
+  height: 100%;
+}
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+/* Loading */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 99;
+}
+.loader {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -66px 0 0 -66px;
+  animation: loading 2s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 60px;
+  height: 100px;
+  background: #f55064;
+  border-radius: 30px 30px 0 0;
+}
+.loader::after {
+  transform: translate(30px) rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.loader::before {
+  transform: translate(-30px) rotate(45deg);
+  transform-origin: 100% 100%;
+}
+@keyframes loading {
+  20% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.8);
+  }
+}
+@-webkit-keyframes loading {
+  20% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.8);
+  }
+}
+
+.swiper-slide #myHeart {
+  z-index: 20;
+}
+
+.swiper-slide #bgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.ball_container {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  left: 0;
+  top: 5%;
+}
+.p1-text {
+  color: #59000d;
+  font-size: 1rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.ball,
+.ball_x,
+.ball_boom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.ball {
+  z-index: 30;
+}
+.ball_x {
+  left: -8px;
+  top: 40%;
+  z-index: 9;
+}
+
+.ball_boom {
+  top: 10%;
+  width: 180px;
+  height: 238px;
+  background-size: cover;
+  background: url(/assets/images/page1/boom.png) 120% 0 no-repeat;
+  animation: ballBoom 0.3s steps(4);
+  -webkit-animation: ballBoom 0.3s steps(4);
+}
+
+/*气球爆炸*/
+@keyframes ballBoom {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 102% 0;
+  }
+}
+@-webkit-keyframes ballBoom {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 102% 0;
+  }
+}

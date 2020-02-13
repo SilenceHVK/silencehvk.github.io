@@ -3,9 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1,maximum-scale=1,inital-scale=1,user-scalable=no"
+    />
+    <title>Happy Tanabata Festival</title>
+    <link rel="shortcut icon" href="./assets/images/icon/favicon.ico" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <h1>Love</h1>
+    <!--Loading-->
+    <div id="loading" class="animated">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Main -->
+    <div class="swiper-container animated">
+      <div class="swiper-wrapper">
+        <!-- page1 -->
+        <div class="swiper-slide">
+          <div class="ball_container">
+            <div class="p1-text">戳破气球，看看会发生什么？</div>
+            <div class="ball">
+              <img src="./assets/images/page1/ball.png" />
+            </div>
+            <div class="ball_x">
+              <img src="./assets/images/page1/ball-x.png" />
+            </div>
+            <div class="animated" id="ball_boom"></div>
+          </div>
+          <canvas id="myHeart" style="z-index:20;"
+            >您的浏览器不支持Canvas,请更换浏览器</canvas
+          >
+          <canvas id="bgCanvas"></canvas>
+
+          <!-- <h3 style="position:absolute;top:0;bottom:0;margin:auto; z-index:3;">
+            对你的爱，至死不渝
+          </h3> -->
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+    <script src="./assets/js/garden.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script>
+      var ww = $(window).width();
+      var wh = $(window).height();
+      var canvas = document.getElementById('myHeart');
+      var context = canvas.getContext('2d');
+      canvas.height = 350;
+      canvas.width = 350;
+      var bgCanvas = document.getElementById('bgCanvas');
+      var bgCanvascontext = bgCanvas.getContext('2d');
+      bgCanvas.height = wh;
+      bgCanvas.width = ww;
+
+      $(function() {
+        var audio = new Audio('./assets/music/bgmusic.mp3');
+        audio.load();
+        var swiper = new Swiper('.swiper-container', {
+          direction: 'vertical'
+        });
+        //预加载图片
+        loadingImage();
+        $('.ball').on('click', function() {
+          $('.ball_container img,.p1-text').remove();
+          $('#ball_boom')
+            .show()
+            .addClass('ball_boom');
+          audio.play();
+        });
+        $('#ball_boom').animateCssEnd(function() {
+          $('#ball_boom').remove();
+          var heart = new Heart(canvas, context);
+          heart.drawHeart(function() {
+            setTimeout(function() {
+              requestAnimationFrame(render);
+            }, 3000);
+          });
+        });
+      });
+      var hearts = [];
+      function render(a) {
+        requestAnimationFrame(render);
+        hearts.push(new BgHeart(bgCanvas, bgCanvascontext));
+        bgCanvascontext.clearRect(0, 0, ww, wh);
+        for (var i = 0; i < hearts.length; i++) {
+          hearts[i].draw();
+          if (hearts[i].size <= 0) {
+            hearts.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      //图片预加载
+      var loadingImage = function() {
+        var img = new Image();
+        img.src = './assets/images/page1/boom.png';
+        img.onload = function() {
+          $('#loading').addClass('slideOutUp');
+          $('.swiper-container').addClass('slideInUp');
+        };
+        $('#ball_boom').css(
+          'background',
+          'url("' + img.src + '"),120% 0 no-repeat'
+        );
+      };
+    </script>
   </body>
 </html>
